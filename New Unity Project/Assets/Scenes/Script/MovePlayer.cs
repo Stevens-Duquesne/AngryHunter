@@ -7,7 +7,7 @@ public class MovePlayer : MonoBehaviour
 
     public void OnArrowPressedListener(object o, InputManager.OnKeyPressedEventArgs e)
     {
-        transform.Translate( new Vector3((float)e.axe.x,(float)e.axe.y));
+        transform.Translate( new Vector3((float)e.axe.x,0,(float)e.axe.y));
     }
 
 

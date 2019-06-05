@@ -5,17 +5,10 @@ using UnityEngine;
 public class ShootManager : MonoBehaviour
 {
     #region shoot data
-
-    public float maxForce;//maximum strength output for the shot
-    public float minForce;//minimum strength output for the shot
-    public GameObject Arrow;
-    Quaternion shotAngle; //Angle wich is used for the arrow starting position  (modified in update with camera current angle).
+    public GameObject arrow; //prefab of an arrow
     float timer = 0;
     #endregion
-    private void Awake()
-    {
 
-    }
     #region camera view experimental
     public enum RotationAxes { MouseXAndY = 0, MouseX = 1, MouseY = 2 }
     public RotationAxes axes = RotationAxes.MouseXAndY;
@@ -34,16 +27,13 @@ public class ShootManager : MonoBehaviour
     public float frameCounter = 20;
     Quaternion originalRotation;
     #endregion
-    public void CatchMouse(object o, InputManager.OnMouseTranslationEventArgs e)
-    {
-        rotationX += e.translationMove.x * sensivityX;
-        rotationY += e.translationMove.y * sensivityY;
-    }
+  
     // Start is called before the first frame update
     void Start()
     {
         #region setting view input
         FindObjectOfType<InputManager>()._onMousetranslate += CatchMouse;
+        FindObjectOfType<InputManager>()._onMouseLeftClic += ClicDetect;
         #endregion
         #region experimental
         Rigidbody rb = GetComponent<Rigidbody>();
@@ -59,18 +49,7 @@ public class ShootManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //if (FindObjectOfType<InputManager>().OnMouseRClicDown())
-        //{
-        timer += Time.deltaTime;
-        //}
-
-
-        //if (FindObjectOfType<InputManager>().OnMouseRClicUp())
-        //{
-        ShootingArrow(GetPower(timer));
-        //}
-
-
+      
         #region camera view update experimental
         if (axes == RotationAxes.MouseXAndY)
         {
@@ -158,19 +137,16 @@ public class ShootManager : MonoBehaviour
     {
 
 
-            //onclicDown
-
-            //shooting position
-       
-
-        //reset timer
-        //timer = 0;
+            //clic check
+            //arrow ready to shot check
+            //maintaining clic increase power through time + clamping values in get power and translate the arrow back slowly.
+            //when clic released arrow is shot with the calculated power and the correct angle.
 
     }
     private float GetPower(float time)
     {
         //clamping power value on min and max
-        float power = Mathf.Clamp(timer, minForce, maxForce);
+        float power= Mathf.Clamp(timer, DataContainer.singleton.ShotData.shot.minForce, DataContainer.singleton.ShotData.shot.maxForce);
         return power;
     }
     #endregion
@@ -194,4 +170,13 @@ public class ShootManager : MonoBehaviour
     }
 
     #endregion
+    public void CatchMouse(object o, InputManager.OnMouseTranslationEventArgs e)
+    {
+        rotationX += e.translationMove.x * sensivityX;
+        rotationY += e.translationMove.y * sensivityY;
+    }
+    public void ClicDetect(object o,InputManager.OnMouseClicEventArgs e)
+    {
+      
+    }
 }

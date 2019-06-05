@@ -302,8 +302,8 @@ GameObject:
   - component: {fileID: 963194228}
   - component: {fileID: 963194227}
   - component: {fileID: 963194226}
-  - component: {fileID: 963194229}
   - component: {fileID: 963194230}
+  - component: {fileID: 963194229}
   - component: {fileID: 963194231}
   m_Layer: 0
   m_Name: Main Camera
@@ -401,9 +401,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 741171b42660d954c9375968f3847eb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxForce: 0
-  minForce: 0
-  Arrow: {fileID: 5448307421245157227, guid: fc2d448ea3be5ea498bb040c3bfaf629, type: 3}
+  arrow: {fileID: 5448307421245157227, guid: fc2d448ea3be5ea498bb040c3bfaf629, type: 3}
   axes: 0
   sensivityX: 0.1
   sensivityY: 0.1
@@ -421,7 +419,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 963194225}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ab3e5d52758d5249ba566f5b29fe363, type: 3}
+  m_Script: {fileID: 11500000, guid: 9d8d94a4eefcb2742af501d9f89115f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerData: {fileID: 11400000, guid: 70e0357732c09444f9503a547e1c719c, type: 2}
