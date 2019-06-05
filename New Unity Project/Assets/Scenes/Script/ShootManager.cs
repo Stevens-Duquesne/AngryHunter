@@ -2,18 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShootScript : MonoBehaviour
+public class ShootManager : MonoBehaviour
 {
     #region shoot data
 
-    float maxForce;//maximum strength output for the shot
-    float minForce;//minimum strength output for the shot
-
+    public float maxForce;//maximum strength output for the shot
+    public float minForce;//minimum strength output for the shot
+    public GameObject Arrow;
     Quaternion shotAngle; //Angle wich is used for the arrow starting position  (modified in update with camera current angle).
-    public GameObject Arrow; //prefav of the arrow we want to instanciate and shoot.(temporary cause we can use an inventory).
     float timer = 0;
     #endregion
-    #region camera view
+    private void Awake()
+    {
+
+    }
+    #region camera view experimental
     public enum RotationAxes { MouseXAndY = 0, MouseX = 1, MouseY = 2 }
     public RotationAxes axes = RotationAxes.MouseXAndY;
     public float sensivityX = 20F, sensivityY = 20F;
@@ -31,39 +34,48 @@ public class ShootScript : MonoBehaviour
     public float frameCounter = 20;
     Quaternion originalRotation;
     #endregion
-
+    public void CatchMouse(object o, InputManager.OnMouseTranslationEventArgs e)
+    {
+        rotationX += e.translationMove.x * sensivityX;
+        rotationY += e.translationMove.y * sensivityY;
+    }
     // Start is called before the first frame update
     void Start()
     {
+        #region setting view input
+        FindObjectOfType<InputManager>()._onMousetranslate += CatchMouse;
+        #endregion
+        #region experimental
         Rigidbody rb = GetComponent<Rigidbody>();
         if (rb)
             rb.freezeRotation = true;
         originalRotation = transform.localRotation;
+
+        //fill the quiver with 5 arrows to start
+      
+        #endregion
     }
 
     // Update is called once per frame
     void Update()
     {
-
         //if (FindObjectOfType<InputManager>().OnMouseRClicDown())
         //{
-        //    timer += Time.deltaTime;
+        timer += Time.deltaTime;
         //}
 
 
         //if (FindObjectOfType<InputManager>().OnMouseRClicUp())
         //{
-        //    ShootingArrow(GetPower(timer));
+        ShootingArrow(GetPower(timer));
         //}
 
-        #region camera view update
+
+        #region camera view update experimental
         if (axes == RotationAxes.MouseXAndY)
         {
             rotAverageX = 0f;
             rotAverageY = 0f;
-
-            //rotationY += FindObjectOfType<InputManager>().OnMouseUse("MouseY");
-            // rotationX += FindObjectOfType<InputManager>().OnMouseUse("MouseX");
 
             rotArrayY.Add(rotationY);
             rotArrayX.Add(rotationX);
@@ -101,8 +113,6 @@ public class ShootScript : MonoBehaviour
         {
             rotAverageX = 0f;
 
-            //  rotationX += FindObjectOfType<InputManager>().OnMouseUse("MouseX");
-
             rotArrayX.Add(rotationX);
 
             if (rotArrayX.Count >= frameCounter)
@@ -123,8 +133,6 @@ public class ShootScript : MonoBehaviour
         else
         {
             rotAverageY = 0f;
-
-            // rotationY += FindObjectOfType<InputManager>().OnMouseUse("MouseY");
 
             rotArrayY.Add(rotationY);
 
@@ -148,21 +156,26 @@ public class ShootScript : MonoBehaviour
     #region shooting method
     private void ShootingArrow(float power)
     {
-        //onclicrelease shooting
+
+
+            //onclicDown
+
+            //shooting position
+       
 
         //reset timer
-        timer = 0;
+        //timer = 0;
 
     }
     private float GetPower(float time)
     {
         //clamping power value on min and max
-
-        return 0;
+        float power = Mathf.Clamp(timer, minForce, maxForce);
+        return power;
     }
     #endregion
 
-    #region camera view clamping
+    #region camera view clamping experimental
     public static float ClampAngle(float angle, float min, float max)
     {
         angle = angle % 360;
