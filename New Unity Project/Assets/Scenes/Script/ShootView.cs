@@ -8,7 +8,7 @@ public class ShootView : MonoBehaviour
     #region camera view experimental
     public enum RotationAxes { MouseXAndY = 0, MouseX = 1, MouseY = 2 }
     public RotationAxes axes = RotationAxes.MouseXAndY;
-    public float sensivityX = 20F, sensivityY = 20F;
+    public float sensivityX = 0.2F, sensivityY = 0.2F;
 
     public float minimumX = -360F, maximumX = 360F;
     public float minimumY = -60F, maximumY = 60F;

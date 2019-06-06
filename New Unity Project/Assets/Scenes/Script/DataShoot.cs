@@ -9,8 +9,8 @@ public class DataShoot : ScriptableObject
     public class Shot
     {
         public bool canshoot=false;
-        public float maxForce=0;//maximum strength output for the shot
-        public float minForce=0;//minimum strength output for the shot
+        public float maxForce=120;//maximum strength output for the shot
+        public float minForce=20;//minimum strength output for the shot
         Quaternion shotAngle=Quaternion.identity; //Angle wich is used for the arrow starting position  
     }
     public Shot shot;
