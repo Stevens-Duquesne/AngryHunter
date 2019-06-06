@@ -8,6 +8,7 @@ public class ShootManager : MonoBehaviour
     public GameObject arrow; //prefab of an arrow
     float timer = 0;
     bool trigger;
+    bool shootPermission;
     GameObject projectile;
     #endregion
 
@@ -29,23 +30,35 @@ public class ShootManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-      
+      if(DataContainer.singleton.ShotData.shot.canshoot && projectile.activeSelf) //replace by a checkQuiver value method
+        {
+            projectile.transform.rotation = gameObject.transform.rotation;
+            projectile.transform.position = gameObject.transform.position + Vector3.forward;
+
+            if(trigger)
+            {
+                timer += Time.deltaTime;
+
+            }
+            else
+            {
+                ShootingArrow(GetPower(timer), projectile);
+                timer = 0;
+            }
+        }
+
        
     }
     #region shooting method
-    private void ShootingArrow(float power)
+    private void ShootingArrow(float power,GameObject arrowToShot)
     {
-
-
-            //clic check
-            //arrow ready to shot check
-            //maintaining clic increase power through time + clamping values in get power and translate the arrow back slowly.
-            //when clic released arrow is shot with the calculated power and the correct angle.
+            Rigidbody rb = arrowToShot.GetComponent<Rigidbody>();
+        rb.AddRelativeForce(Vector3.forward*power, ForceMode.Impulse);
 
     }
     private float GetPower(float time)
     {
-        //clamping power value on min and max
+        //clamping power value between min and max
         float power= Mathf.Clamp(timer, DataContainer.singleton.ShotData.shot.minForce, DataContainer.singleton.ShotData.shot.maxForce);
         return power;
     }

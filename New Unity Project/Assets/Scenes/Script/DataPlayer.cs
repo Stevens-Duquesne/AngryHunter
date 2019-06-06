@@ -10,6 +10,7 @@ public class DataPlayer : ScriptableObject
     {
         public  float speed;
         public  bool jumpAllowed;
+        public float jumpIntensity;
         public  bool acceleration;
         public List<GameObject> Quiver; //ne marche pas bien je vais demander a Ambroise pour une alternative
     }
