@@ -6,14 +6,15 @@ using System.Collections.Generic;
 public class DataPlayer : ScriptableObject
 {
     [System.Serializable]
-    public class Player
+    public  class Player
     {
-        public static float speed;
-        public static bool jumpAllowed;
-        public static bool acceleration;
-        public static Stack<GameObject> Quiver;
+        public  float speed;
+        public  bool jumpAllowed;
+        public  bool acceleration;
+        public List<GameObject> Quiver; //ne marche pas bien je vais demander a Ambroise pour une alternative
     }
-    public static Player player;
+    public Player player;
+   
 
 
 }
