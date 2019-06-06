@@ -8,6 +8,7 @@ public class ShootManager : MonoBehaviour
     public GameObject arrow; //prefab of an arrow
     float timer = 0;
     bool trigger;
+    bool shootPermission;
     GameObject projectile;
     #endregion
 
