@@ -30,11 +30,11 @@ public class ShootManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-      if(DataContainer.singleton.ShotData.shot.canshoot && projectile.activeSelf) // an arrow of the quiver is active.
+      if(DataContainer.singleton.ShotData.shot.canshoot && projectile.activeSelf) //replace by a checkQuiver value method
         {
             projectile.transform.rotation = gameObject.transform.rotation;
             projectile.transform.position = gameObject.transform.position + Vector3.forward;
-            //will be adapted to take arrow from the quiver later
+
             if(trigger)
             {
                 timer += Time.deltaTime;
