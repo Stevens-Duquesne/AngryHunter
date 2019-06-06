@@ -8,7 +8,7 @@ public class InputManager : MonoBehaviour
 
     public class OnKeyPressedEventArgs : EventArgs
     {
-        public Vector2Int axe;
+        public Vector3Int axe;
 
     }
     public class OnMouseTranslationEventArgs : EventArgs
@@ -59,7 +59,7 @@ public class InputManager : MonoBehaviour
         bool down = Input.GetKey(KeyCode.DownArrow);
         if (left || right || up || down)
         {
-            OnKeyPressed(new OnKeyPressedEventArgs { axe = new Vector2Int(((left) ? -1 : 0 + ((right) ? 1 : 0)), ((down) ? -1 : 0 + ((up) ? 1 : 0)))});
+            OnKeyPressed(new OnKeyPressedEventArgs { axe = new Vector3Int(((left) ? -1 : 0 + ((right) ? 1 : 0)), 0 ,((down) ? -1 : 0 + ((up) ? 1 : 0)))});
         }
 
         //Mouse Moves
