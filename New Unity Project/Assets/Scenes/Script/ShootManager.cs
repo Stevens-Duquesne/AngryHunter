@@ -15,32 +15,33 @@ public class ShootManager : MonoBehaviour
     private void Awake()
     {
         //provisory arrow to test shoot
-        projectile = Instantiate(arrow, transform.position, Quaternion.identity);
+        FindObjectOfType<InputManager>()._onMouseLeftClic += ClicDetect;
     }
 
     // Start is called before the first frame update
     void Start()
     {
         #region setting clic input
-        FindObjectOfType<InputManager>()._onMouseLeftClic += ClicDetect;
+        projectile = Instantiate(arrow, transform.position+Vector3.forward*2, transform.rotation*Quaternion.Euler(new Vector3(90,0,0)));
         projectile.SetActive(true);
+        DataContainer.singleton.ShotData.shot.canshoot= true;//temporary
+
         #endregion
     }
 
     // Update is called once per frame
     void Update()
     {
-      if(DataContainer.singleton.ShotData.shot.canshoot && projectile.activeSelf) //replace by a checkQuiver value method
+        projectile.transform.rotation = transform.rotation * Quaternion.Euler(new Vector3(90, 0, 0));
+        projectile.transform.position = gameObject.transform.position + Vector3.forward;
+        if (shootPermission) //replace by a checkQuiver value method
         {
-            projectile.transform.rotation = gameObject.transform.rotation;
-            projectile.transform.position = gameObject.transform.position + Vector3.forward;
-
             if(trigger)
             {
                 timer += Time.deltaTime;
 
             }
-            else
+            else if (!trigger && shootPermission)
             {
                 ShootingArrow(GetPower(timer), projectile);
                 timer = 0;
@@ -68,5 +69,6 @@ public class ShootManager : MonoBehaviour
     public void ClicDetect(object o,InputManager.OnMouseClicEventArgs e)
     {
         trigger = e.MouseClicState;
+        shootPermission = e.MouseOnClic;
     }
 }

@@ -19,6 +19,7 @@ public class InputManager : MonoBehaviour
 
     public class OnMouseClicEventArgs : EventArgs
     {
+        public bool MouseOnClic;
         public bool MouseClicState;
     }
 
@@ -42,7 +43,7 @@ public class InputManager : MonoBehaviour
         if (_onMousetranslate != null)
             _onMousetranslate(this, args);
     }
-   private void OnMouseClic(OnMouseClicEventArgs args)
+    private void OnMouseClic(OnMouseClicEventArgs args)
     {
         if (_onMouseLeftClic != null)
             _onMouseLeftClic(this, args);
@@ -59,32 +60,39 @@ public class InputManager : MonoBehaviour
         bool down = Input.GetKey(KeyCode.DownArrow);
         if (left || right || up || down)
         {
-            OnKeyPressed(new OnKeyPressedEventArgs { axe = new Vector3Int(((left) ? -1 : 0 + ((right) ? 1 : 0)), 0 ,((down) ? -1 : 0 + ((up) ? 1 : 0)))});
+            OnKeyPressed(new OnKeyPressedEventArgs { axe = new Vector3Int(((left) ? -1 : 0 + ((right) ? 1 : 0)), 0, ((down) ? -1 : 0 + ((up) ? 1 : 0))) });
         }
 
         //Mouse Moves
         Vector2 newMousePosition = Input.mousePosition;
         Vector2 translationMove = newMousePosition - OldMousePosition;
-        if (translationMove.magnitude != 0 )
+        if (translationMove.magnitude != 0)
         {
-        OnMouseTranslate(new OnMouseTranslationEventArgs { mousePosition = newMousePosition, translationMove = translationMove });
+            OnMouseTranslate(new OnMouseTranslationEventArgs { mousePosition = newMousePosition, translationMove = translationMove });
         }
 
         OldMousePosition = newMousePosition;
-        bool mouseLeftButton=false;
+       
 
         //Mouse Clic
-        if(Input.GetMouseButton(0))//clic
+        if(Input.GetMouseButtonDown(0))
         {
-            mouseLeftButton = true;
-          OnMouseClic(new OnMouseClicEventArgs { MouseClicState = mouseLeftButton });
-            
+            bool mouseLeftButton = true;
+            OnMouseClic(new OnMouseClicEventArgs { MouseOnClic = mouseLeftButton });
+        }
+        if (Input.GetMouseButton(0))//clic
+        {
+          bool  mouseLeftButton = true;
+            OnMouseClic(new OnMouseClicEventArgs { MouseClicState = mouseLeftButton });
+
         }
         if (Input.GetMouseButtonUp(0))//released
         {
-            mouseLeftButton = false;
+          bool  mouseLeftButton = false;
             OnMouseClic(new OnMouseClicEventArgs { MouseClicState = mouseLeftButton });
+            OnMouseClic(new OnMouseClicEventArgs { MouseOnClic = mouseLeftButton });
         }
+
 
     }
 }
