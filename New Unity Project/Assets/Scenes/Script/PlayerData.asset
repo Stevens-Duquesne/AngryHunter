@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: PlayerData
   m_EditorClassIdentifier: 
   player:
-    speed: 0
-    jumpAllowed: 0
+    speed: 0.1
+    jumpAllowed: 1
     acceleration: 0
+    Quiver: []
