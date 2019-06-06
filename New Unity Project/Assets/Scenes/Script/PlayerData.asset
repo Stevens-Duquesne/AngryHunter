@@ -16,3 +16,5 @@ MonoBehaviour:
     speed: 0
     jumpAllowed: 0
     acceleration: 0
+    Arrow: {fileID: 5448307421245157227, guid: fc2d448ea3be5ea498bb040c3bfaf629, type: 3}
+    arrowInQuiver: 5
