@@ -15,5 +15,6 @@ MonoBehaviour:
   player:
     speed: 0.1
     jumpAllowed: 1
+    jumpIntensity: 500
     acceleration: 0
     Quiver: []
