@@ -305,6 +305,7 @@ GameObject:
   - component: {fileID: 963194230}
   - component: {fileID: 963194229}
   - component: {fileID: 963194231}
+  - component: {fileID: 963194232}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -377,76 +378,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &351110934312364070
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 9187176423901266740, guid: 41fb2ebcb034c25479adb4e80184b0e0,
-        type: 3}
-      propertyPath: m_Name
-      value: Pigeon
-      objectReference: {fileID: 0}
-    - target: {fileID: 1157697600810284464, guid: 41fb2ebcb034c25479adb4e80184b0e0,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -8.407786
-      objectReference: {fileID: 0}
-    - target: {fileID: 1157697600810284464, guid: 41fb2ebcb034c25479adb4e80184b0e0,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.53701544
-      objectReference: {fileID: 0}
-    - target: {fileID: 1157697600810284464, guid: 41fb2ebcb034c25479adb4e80184b0e0,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 12.46
-      objectReference: {fileID: 0}
-    - target: {fileID: 1157697600810284464, guid: 41fb2ebcb034c25479adb4e80184b0e0,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1157697600810284464, guid: 41fb2ebcb034c25479adb4e80184b0e0,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1157697600810284464, guid: 41fb2ebcb034c25479adb4e80184b0e0,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1157697600810284464, guid: 41fb2ebcb034c25479adb4e80184b0e0,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1157697600810284464, guid: 41fb2ebcb034c25479adb4e80184b0e0,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1157697600810284464, guid: 41fb2ebcb034c25479adb4e80184b0e0,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1157697600810284464, guid: 41fb2ebcb034c25479adb4e80184b0e0,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1157697600810284464, guid: 41fb2ebcb034c25479adb4e80184b0e0,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 41fb2ebcb034c25479adb4e80184b0e0, type: 3}
-
 --- !u!114 &963194229
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -472,14 +403,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   arrow: {fileID: 5448307421245157227, guid: fc2d448ea3be5ea498bb040c3bfaf629, type: 3}
-  axes: 0
-  sensivityX: 0.1
-  sensivityY: 0.1
-  minimumX: -360
-  maximumX: 360
-  minimumY: -60
-  maximumY: 60
-  frameCounter: 60
 --- !u!114 &963194231
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -492,3 +415,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d8d94a4eefcb2742af501d9f89115f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &963194232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963194225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d5bbba1505165b4fae7d938d8b26751, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  axes: 0
+  sensivityX: 20
+  sensivityY: 20
+  minimumX: -360
+  maximumX: 360
+  minimumY: -60
+  maximumY: 60
+  frameCounter: 20

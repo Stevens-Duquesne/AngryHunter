@@ -8,19 +8,22 @@ public class ShootManager : MonoBehaviour
     public GameObject arrow; //prefab of an arrow
     float timer = 0;
     bool trigger;
+    GameObject projectile;
     #endregion
 
-   
-  
+    private void Awake()
+    {
+        //provisory arrow to test shoot
+        projectile = Instantiate(arrow, transform.position, Quaternion.identity);
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         #region setting clic input
         FindObjectOfType<InputManager>()._onMouseLeftClic += ClicDetect;
+        projectile.SetActive(true);
         #endregion
-       
-      
-
     }
 
     // Update is called once per frame
