@@ -23,4 +23,14 @@ public class ArrowManager : MonoBehaviour
             transform.rotation = e.CamAngles * Quaternion.Euler(new Vector3(90, 1, 1));
         }
     }
+    private void OnDestroy()
+    {
+        FindObjectOfType<ShootView>()._onCamRotate -= ArrowRotation;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "ground")
+            Destroy(gameObject);
+    }
 }

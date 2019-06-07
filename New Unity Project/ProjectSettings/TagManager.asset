@@ -6,6 +6,8 @@ TagManager:
   tags:
   - ammo
   - Head
+  - arow
+  - ground
   layers:
   - Default
   - TransparentFX
@@ -17,8 +19,8 @@ TagManager:
   - 
   - Player
   - Arrow
-  - 
-  - 
+  - terrain
+  - Bird
   - 
   - 
   - 

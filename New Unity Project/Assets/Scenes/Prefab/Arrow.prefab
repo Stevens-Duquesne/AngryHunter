@@ -13,10 +13,10 @@ GameObject:
   - component: {fileID: 4733338311060133778}
   - component: {fileID: 7626112672222187295}
   - component: {fileID: -5123950722390364299}
-  - component: {fileID: 820146203049056552}
+  - component: {fileID: -1320871059453266106}
   m_Layer: 9
   m_Name: Arrow
-  m_TagString: ammo
+  m_TagString: arow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -105,12 +105,12 @@ Rigidbody:
   m_Mass: 0.2
   m_Drag: 0
   m_AngularDrag: 0
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &820146203049056552
+--- !u!114 &-1320871059453266106
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

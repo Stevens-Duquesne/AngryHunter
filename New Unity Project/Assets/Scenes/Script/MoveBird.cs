@@ -43,7 +43,7 @@ public class MoveBird : MonoBehaviour
             {
             direction = Vector3.Normalize(gameObject.transform.position - collision.transform.position);
             Rigidbody rb =GetComponent<Rigidbody>();
-            rb.AddRelativeForce(direction * 1000, ForceMode.Impulse);
+            rb.AddRelativeForce(direction * 40, ForceMode.Impulse);
             Debug.Log("Fuire!");
 
             }

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PlayerData
   m_EditorClassIdentifier: 
   player:
-    speed: 1
+    speed: 0.5
     jumpAllowed: 1
     jumpIntensity: 500
     acceleration: 0

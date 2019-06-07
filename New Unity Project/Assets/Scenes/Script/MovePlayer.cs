@@ -27,9 +27,9 @@ public class MovePlayer : MonoBehaviour
     }
     public void OnArrowPressedListener(object o, InputManager.OnKeyPressedEventArgs e)
     {
-        Vector3 direction= new Vector3((float)e.axe.x, 0f, (float)e.axe.y);
+        Vector3 direction= new Vector3((float)e.axe.x, 0f, -(float)e.axe.y);
         iMove = true;
-        transform.Translate(direction * DataContainer.singleton.PlayerData.player.speed, Space.World);
+        transform.Translate(direction * DataContainer.singleton.PlayerData.player.speed);
         
     }
     public void OnSpacePressedListener(object o, InputManager.OnSpaceJumpEventArgs e)

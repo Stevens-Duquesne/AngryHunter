@@ -4,18 +4,13 @@ using UnityEngine;
 
 public class HealthMonster : MonoBehaviour
 {
-    public float Health = 70f;
+    public float Health = 20f;
 
 
 
     public void RemoveHealth(float amount)
     {
-        Health -= amount;
-        if (Health <= 0)
-        {
-            Destroy(gameObject);
 
-        }
 
     }
 
@@ -25,14 +20,46 @@ public class HealthMonster : MonoBehaviour
 
     }
 
-    private void OnCollisionEnter(Collision other)
+    /*private void Awake()
     {
-        if (other.gameObject.tag == "arow")
+        FindObjectOfType<HeadBird>()._onHeadShoot += DetectHeadShoot;
+        FindObjectOfType<BodyBird>()._onBodyShoot += DetectBodyShoot;
+    }
+    public void DetectHeadShoot(object o, HeadBird.OnHeadShootEventArgs e)
+    {
+        if (e.HeadShoot)
         {
-            Destroy(other.gameObject, 2);
+            Health -=Health;
+            CheckHealth();
+        }
+    }
+    public void DetectBodyShoot(object o, BodyBird.OnBodyShootEventArgs e)
+    {
+        if (e.BodyShoot)
+        {
+            Health -= 10f;
+            CheckHealth();
 
         }
+    }*/
+        private void CheckHealth()
+        {
+            if (Health <= 0)
+            {
+               // FindObjectOfType<BodyBird>()._onBodyShoot -= DetectBodyShoot;
+               // FindObjectOfType<HeadBird>()._onHeadShoot -= DetectHeadShoot;
+                Destroy(gameObject);
+            }
+        }
 
-
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "arow")
+        {
+            Health -= 10f;
+            CheckHealth();
+            Destroy(collision.gameObject);
+        }
     }
+
 }
