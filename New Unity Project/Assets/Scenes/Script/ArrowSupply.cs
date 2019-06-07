@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class ArrowSupply : MonoBehaviour
 {
@@ -18,4 +19,19 @@ public class ArrowSupply : MonoBehaviour
         arrowsToAdd = arrowsLeft += arrowAdd;
 
     }
+
+    public class OnAddingArrowsEventArgs : EventArgs
+    {
+
+    }
+
+    public EventHandler<OnAddingArrowsEventArgs> _addArrows;
+
+    private void OnAddingArrows(OnAddingArrowsEventArgs e)
+    {
+        if (_addArrows != null)
+            _addArrows(this, e);
+    }
+
+    
 }
