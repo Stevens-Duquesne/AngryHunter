@@ -17,4 +17,5 @@ MonoBehaviour:
     jumpAllowed: 1
     jumpIntensity: 500
     acceleration: 0
-    Quiver: []
+    Arrow: {fileID: 5448307421245157227, guid: fc2d448ea3be5ea498bb040c3bfaf629, type: 3}
+    arrowInQuiver: 5
