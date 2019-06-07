@@ -1,9 +1,23 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class ShootView : MonoBehaviour
 {
+    #region Event
+    public class OnCamRotateEventArgs : EventArgs
+    {
+        public Quaternion CamAngles;
+    }
+    public EventHandler<OnCamRotateEventArgs> _onCamRotate;
+    private void OnCamRotate(OnCamRotateEventArgs args)
+    {
+        if (_onCamRotate != null)
+            _onCamRotate(this, args);
+    }
+
+    #endregion
 
     #region camera view experimental
     public enum RotationAxes { MouseXAndY = 0, MouseX = 1, MouseY = 2 }
@@ -29,6 +43,7 @@ public class ShootView : MonoBehaviour
     {
         #region setting view input
         FindObjectOfType<InputManager>()._onMousetranslate += CatchMouse;
+        FindObjectOfType<MovePlayer>()._onCubeMove += CatchCube;
         #endregion
         #region experimental
         Rigidbody rb = GetComponent<Rigidbody>();
@@ -125,6 +140,7 @@ public class ShootView : MonoBehaviour
             Quaternion yQuaternion = Quaternion.AngleAxis(rotAverageY, Vector3.left);
             transform.localRotation = originalRotation * yQuaternion;
         }
+        OnCamRotate(new OnCamRotateEventArgs { CamAngles = transform.localRotation });
         #endregion
     } 
 
@@ -152,5 +168,8 @@ public class ShootView : MonoBehaviour
         rotationX += e.translationMove.x * sensivityX;
         rotationY += e.translationMove.y * sensivityY;
     }
-   
+   public void CatchCube(object o , MovePlayer.OnPositionCubeEventArgs e)
+    {
+        transform.position = e.positionCube;
+    }
 }
