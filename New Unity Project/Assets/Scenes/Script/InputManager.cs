@@ -90,18 +90,19 @@ public class InputManager : MonoBehaviour
 
 
         //Mouse Clic
-        if (Input.GetMouseButtonDown(0))
+      
+        if (Input.GetButtonDown("Fire1"))
         {
             bool mouseLeftButton = true;
             OnMouseClic(new OnMouseClicEventArgs { MouseOnClic = mouseLeftButton });
         }
-        if (Input.GetMouseButton(0))//clic
+        if (Input.GetButton("Fire1"))//clic
         {
             bool mouseLeftButton = true;
             OnMouseClic(new OnMouseClicEventArgs { MouseClicState = mouseLeftButton });
 
         }
-        if (Input.GetMouseButtonUp(0))//released
+        if (Input.GetButtonUp("Fire1"))//released
         {
             bool mouseLeftButton = false;
             OnMouseClic(new OnMouseClicEventArgs { MouseClicState = mouseLeftButton });

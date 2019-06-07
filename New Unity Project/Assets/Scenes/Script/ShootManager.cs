@@ -22,18 +22,19 @@ public class ShootManager : MonoBehaviour
     void Start()
     {
         #region setting clic input
-        projectile = Instantiate(arrow, transform.position+Vector3.forward*2, transform.rotation*Quaternion.Euler(new Vector3(90,0,0)));
-        projectile.SetActive(true);
         DataContainer.singleton.ShotData.shot.canshoot= true;//temporary
-
+        projectile = Instantiate(arrow, transform.position + Vector3.up * 2, transform.rotation * Quaternion.Euler(new Vector3(90, 0, 0)));
         #endregion
     }
 
     // Update is called once per frame
     void Update()
     {
-        projectile.transform.rotation = transform.rotation * Quaternion.Euler(new Vector3(90, 0, 0));
-        projectile.transform.position = gameObject.transform.position + Vector3.forward;
+        if (projectile != null)
+        {
+            projectile.transform.rotation = transform.rotation * Quaternion.Euler(new Vector3(90, 0, 0));
+            projectile.transform.position = gameObject.transform.position + Vector3.forward;
+        }
         if (shootPermission) //replace by a checkQuiver value method
         {
             if(trigger)
@@ -52,8 +53,9 @@ public class ShootManager : MonoBehaviour
     }
     #region shooting method
     private void ShootingArrow(float power,GameObject arrowToShot)
-    {
-            Rigidbody rb = arrowToShot.GetComponent<Rigidbody>();
+    {       //throw the arrow
+        projectile = Instantiate(arrow, transform.position + Vector3.up * 2, transform.rotation * Quaternion.Euler(new Vector3(90, 0, 0)));
+        Rigidbody rb = arrowToShot.GetComponent<Rigidbody>();
         rb.AddRelativeForce(Vector3.forward*power, ForceMode.Impulse);
 
     }
@@ -68,7 +70,10 @@ public class ShootManager : MonoBehaviour
    
     public void ClicDetect(object o,InputManager.OnMouseClicEventArgs e)
     {
-        trigger = e.MouseClicState;
+        if(e.MouseClicState)
+        {
+            trigger = true;
+        }
         shootPermission = e.MouseOnClic;
     }
 }
