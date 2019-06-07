@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4733338311060133778}
   - component: {fileID: 7626112672222187295}
   - component: {fileID: -5123950722390364299}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Arrow
   m_TagString: ammo
   m_Icon: {fileID: 0}
@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 5448307421245157227}
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0.254, y: 3, z: 49.49836}
-  m_LocalScale: {x: 0.001, y: 0.0070085, z: 0.001}
+  m_LocalScale: {x: 0.01, y: 0.070085, z: 0.01}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0

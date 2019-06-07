@@ -22,8 +22,8 @@ public class InputManager : MonoBehaviour
     }
     public class OnMouseClicEventArgs : EventArgs
     {
-        public bool MouseOnClic;
-        public bool MouseClicState;
+        public bool MouseOnClicDown;
+        public bool MouseOnClicUp;
     }
    
 
@@ -94,20 +94,18 @@ public class InputManager : MonoBehaviour
       
         if (Input.GetButtonDown("Fire1"))
         {
-            bool mouseLeftButton = true;
-            OnMouseClic(new OnMouseClicEventArgs { MouseOnClic = mouseLeftButton });
-        }
-        if (Input.GetButton("Fire1"))//clic
-        {
-            bool mouseLeftButton = true;
-            OnMouseClic(new OnMouseClicEventArgs { MouseClicState = mouseLeftButton });
+            Debug.Log("clic down");
 
+            OnMouseClic(new OnMouseClicEventArgs { MouseOnClicDown = true });
+            OnMouseClic(new OnMouseClicEventArgs { MouseOnClicUp = false });
         }
+       
         if (Input.GetButtonUp("Fire1"))//released
         {
-            bool mouseLeftButton = false;
-            OnMouseClic(new OnMouseClicEventArgs { MouseClicState = mouseLeftButton });
-            OnMouseClic(new OnMouseClicEventArgs { MouseOnClic = mouseLeftButton });
+            Debug.Log("clic release");
+
+            OnMouseClic(new OnMouseClicEventArgs { MouseOnClicDown = false });
+            OnMouseClic(new OnMouseClicEventArgs { MouseOnClicUp = true });
         }
 
 
