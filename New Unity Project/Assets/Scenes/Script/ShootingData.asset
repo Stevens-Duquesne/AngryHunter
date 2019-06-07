@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: ShootingData
   m_EditorClassIdentifier: 
   shot:
-    maxForce: 500
+    canshoot: 1
+    maxForce: 50
     minForce: 10
+    maxTime: 5

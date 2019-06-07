@@ -16,17 +16,23 @@ public class InputManager : MonoBehaviour
         public Vector2 mousePosition;
         public Vector2 translationMove; //Ancienne position
     }
-
+    public class OnSpaceJumpEventArgs : EventArgs // Jump Event
+    {
+        public Vector3Int jumping;
+    }
     public class OnMouseClicEventArgs : EventArgs
     {
-        public bool MouseClicState;
+        public bool MouseOnClicDown;
+        public bool MouseOnClicUp;
     }
+   
 
 
     //Event Handlers declaration
     public EventHandler<OnKeyPressedEventArgs> _onKeyPressed;
     public EventHandler<OnMouseTranslationEventArgs> _onMousetranslate;
     public EventHandler<OnMouseClicEventArgs> _onMouseLeftClic;
+    public EventHandler<OnSpaceJumpEventArgs> _onSpaceJump;
 
     private Vector2 OldMousePosition;
 
@@ -42,10 +48,15 @@ public class InputManager : MonoBehaviour
         if (_onMousetranslate != null)
             _onMousetranslate(this, args);
     }
-   private void OnMouseClic(OnMouseClicEventArgs args)
+    private void OnMouseClic(OnMouseClicEventArgs args)
     {
         if (_onMouseLeftClic != null)
             _onMouseLeftClic(this, args);
+    }
+    private void OnSpaceJump(OnSpaceJumpEventArgs args)
+    {
+        if (_onSpaceJump != null)
+            _onSpaceJump(this, args);
     }
 
 
@@ -59,32 +70,47 @@ public class InputManager : MonoBehaviour
         bool down = Input.GetKey(KeyCode.DownArrow);
         if (left || right || up || down)
         {
-            OnKeyPressed(new OnKeyPressedEventArgs { axe = new Vector2Int(((left) ? -1 : 0 + ((right) ? 1 : 0)), ((down) ? -1 : 0 + ((up) ? 1 : 0)))});
+            OnKeyPressed(new OnKeyPressedEventArgs { axe = new Vector2Int(((left) ? -1 : 0 + ((right) ? 1 : 0)), ((down) ? -1 : 0 + ((up) ? 1 : 0))) });
+
+        }
+        //Espace Jump
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            OnSpaceJump(new OnSpaceJumpEventArgs { jumping = new Vector3Int(0, 5, 0) });
         }
 
         //Mouse Moves
         Vector2 newMousePosition = Input.mousePosition;
         Vector2 translationMove = newMousePosition - OldMousePosition;
-        if (translationMove.magnitude != 0 )
+        if (translationMove.magnitude != 0)
         {
-        OnMouseTranslate(new OnMouseTranslationEventArgs { mousePosition = newMousePosition, translationMove = translationMove });
+            OnMouseTranslate(new OnMouseTranslationEventArgs { mousePosition = newMousePosition, translationMove = translationMove });
         }
 
         OldMousePosition = newMousePosition;
-        bool mouseLeftButton=false;
+
 
         //Mouse Clic
-        if(Input.GetMouseButton(0))//clic
+      
+        if (Input.GetButtonDown("Fire1"))
         {
-            mouseLeftButton = true;
-          OnMouseClic(new OnMouseClicEventArgs { MouseClicState = mouseLeftButton });
-            
+            Debug.Log("clic down");
+
+            OnMouseClic(new OnMouseClicEventArgs { MouseOnClicDown = true });
+            OnMouseClic(new OnMouseClicEventArgs { MouseOnClicUp = false });
         }
-        if (Input.GetMouseButtonUp(0))//released
+       
+        if (Input.GetButtonUp("Fire1"))//released
         {
-            mouseLeftButton = false;
-            OnMouseClic(new OnMouseClicEventArgs { MouseClicState = mouseLeftButton });
+            Debug.Log("clic release");
+
+            OnMouseClic(new OnMouseClicEventArgs { MouseOnClicDown = false });
+            OnMouseClic(new OnMouseClicEventArgs { MouseOnClicUp = true });
         }
 
+
+        //move Cube
+
+      
     }
 }
