@@ -7,7 +7,7 @@ public class ShootManager : MonoBehaviour
     #region shoot data
     public GameObject arrow; //prefab of an arrow
     float timer = 0;
-   public GameObject projectile;
+    public GameObject projectile;
     #endregion
 
     private void Awake()
@@ -27,7 +27,7 @@ public class ShootManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-      
+
 
 
     }
@@ -36,13 +36,14 @@ public class ShootManager : MonoBehaviour
     {       //throw the arrow
 
         Rigidbody rb = arrowToShot.GetComponent<Rigidbody>();
-        rb.AddRelativeForce(Vector3.forward * power, ForceMode.Impulse);
+        rb.AddRelativeForce(Vector3.up * power, ForceMode.Impulse);
+        rb.useGravity = true;
 
     }
     private float GetPower(float time)
     {
         //clamping power value between min and max
-        float power = Mathf.Clamp((Time.time-timer)/ DataContainer.singleton.ShotData.shot.maxTime, DataContainer.singleton.ShotData.shot.minForce, DataContainer.singleton.ShotData.shot.maxForce);
+        float power = Mathf.Clamp((Time.time - timer) / DataContainer.singleton.ShotData.shot.maxTime, DataContainer.singleton.ShotData.shot.minForce, DataContainer.singleton.ShotData.shot.maxForce);
         return power;
     }
     #endregion
@@ -53,14 +54,15 @@ public class ShootManager : MonoBehaviour
         //catch the clic event
         if (e.MouseOnClicDown)
         {
-                projectile = Instantiate(arrow, transform.position, transform.localRotation * Quaternion.Euler(new Vector3(90, 1, 1)));
-            timer = Time.time;   
+            projectile = Instantiate(arrow, transform.position, transform.localRotation * Quaternion.Euler(new Vector3(90, 1, 1)));
+            timer = Time.time;
         }
-       if (e.MouseOnClicUp && projectile!=null)
+        if (e.MouseOnClicUp && projectile != null)
         {
             ShootingArrow(GetPower(timer), projectile);
         }
-
-      
     }
 }
+
+
+      
